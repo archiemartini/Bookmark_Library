@@ -2,14 +2,15 @@ require 'pg'
 
 feature 'displays list of bookmarks' do
   scenario 'user sees a list of bookmarks' do
-    connection = PG.connect(dbname: 'bookmark_manager_test')
-
-    connection.exec("INSERT INTO bookmarks VALUES(1, 'Makers', 'http://www.makersacademy.com/');")
-    connection.exec("INSERT INTO bookmarks VALUES(2, 'Destroy All Software', 'http://www.destroyallsoftware.com/');")
-    connection.exec("INSERT INTO bookmarks VALUES(3, 'Google', 'http://www.google.com/');")
+    Bookmark_Library.add(url: 'http://www.makersacademy.com', title: 'Makers Academy')
+    Bookmark_Library.add(url: 'http://www.destroyallsoftware.com', title: 'Destroy All Software')
+    Bookmark_Library.add(url: 'http://www.google.com', title: 'Google')
 
     visit '/bookmarks'
-    expect(has_expected_content(page)).to be true
-  end
+
+    expect(page).to have_link('Makers Academy', href: 'http://www.makersacademy.com')
+    expect(page).to have_link('Destroy All Software',  href: 'http://www.destroyallsoftware.com')
+    expect(page).to have_link('Google', href: 'http://www.google.com')
   
+  end
 end

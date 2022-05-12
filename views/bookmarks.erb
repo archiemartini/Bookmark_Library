@@ -1,9 +1,15 @@
 <h1>Bookmarks</h1>
 <%# <%= @lib.list_bookmarks.join('<br />') %> 
 
- <% @bookmarks.each do |bookmark| %>
-    <li><%= bookmark %></li>
+<ul>
+  <% @bookmarks.each do |bookmark| %>
+    <li>
+      <a href="<%= bookmark.url %>">
+        <%= bookmark.title %>
+      </a>
+    </li>
   <% end %>
+</ul>
 
 <form action="/added" method="post">
   <input type="text" name="bookmark_title" placeholder="Bookmark title...">
