@@ -3,9 +3,9 @@ require 'sinatra/reloader'
 require './lib/bookmark_library'
 
 class BookmarkManager < Sinatra::Base
-
-  enable :method_override
-
+  
+  enable :sessions, :method_override
+  
   configure :development do
     register Sinatra::Reloader
   end
@@ -24,9 +24,9 @@ class BookmarkManager < Sinatra::Base
     redirect "/bookmarks"
   end
 
-  post '/deleted' do
-    Bookmark_Library.delete(title: params[:bookmark_delete])
-    redirect "/bookmarks"
+  delete 'bookmarks/:id' do
+    Bookmark_Library.delete(id: params[:id])
+    redirect '/bookmarks'
   end
 
   run! if app_file == $0

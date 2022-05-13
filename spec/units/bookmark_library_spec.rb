@@ -35,13 +35,11 @@ describe Bookmark_Library do
 
   describe '.delete' do
     it 'deletes a bookmark from the page' do
-          
-      bookmark = Bookmark_Library.add(url: 'http://www.example.org', title: 'Test Bookmark')
-      bookmarks = Bookmark_Library.list_bookmarks
-      
-      Bookmark_Library.delete(title: 'Test Bookmark')
-      
-      expect(bookmarks).not_to include bookmark
+      bookmark = Bookmark_Library.add(title: 'Makers Academy', url: 'http://www.makersacademy.com')
+
+      Bookmark_Library.delete(id: bookmark.id)
+  
+      expect(Bookmark_Library.list_bookmarks.length).to eq 0
     end
   end
       

@@ -35,13 +35,12 @@ class Bookmark_Library
 
   end
 
-  def self.delete(title:)
-    if ENV['ENVIRONMENT'] == 'test'
-      connection = PG.connect(dbname: 'bookmark_manager_test')
-    else  
-      connection = PG.connect(dbname: 'bookmark_manager')
+  def self.delete(id:)
+      if ENV['ENVIRONMENT'] == 'test'
+        connection = PG.connect(dbname: 'bookmark_manager_test')
+      else
+        connection = PG.connect(dbname: 'bookmark_manager')
+      end
+      connection.exec_params("DELETE FROM bookmarks WHERE id = $1", [id])
     end
-
-    connection.exec_params("DELETE FROM bookmarks WHERE title = '#{title}';")
-  end
 end
