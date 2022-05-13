@@ -3,6 +3,9 @@ require 'sinatra/reloader'
 require './lib/bookmark_library'
 
 class BookmarkManager < Sinatra::Base
+
+  enable :method_override
+
   configure :development do
     register Sinatra::Reloader
   end
@@ -18,6 +21,11 @@ class BookmarkManager < Sinatra::Base
 
   post '/added' do
     Bookmark_Library.add(url: params[:bookmark_url], title: params[:bookmark_title])
+    redirect "/bookmarks"
+  end
+
+  post '/deleted' do
+    Bookmark_Library.delete(title: params[:bookmark_delete])
     redirect "/bookmarks"
   end
 

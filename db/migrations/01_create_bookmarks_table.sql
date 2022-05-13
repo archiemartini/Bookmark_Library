@@ -11,4 +11,4 @@ DELETE FROM bookmarks WHERE url = 'http://www.askjeeves.com/';
 
 UPDATE bookmarks SET url = 'http://www.destroyallsoftware.com/' WHERE url = 'http://www.twitter.com/';
 
-ALTER TABLE bookmarks ADD titles VARCHAR(60);
+ALTER TABLE bookmarks ADD title VARCHAR(60);

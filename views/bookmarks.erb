@@ -12,7 +12,12 @@
 </ul>
 
 <form action="/added" method="post">
-  <input type="text" name="bookmark_title" placeholder="Bookmark title...">
-  <input type="text" name="bookmark_url" placeholder="Url...">
-  <input type="submit" value="add">
+  <input type="text" name="bookmark_title" placeholder="Bookmark title..." >
+  <input type="text" name="bookmark_url" placeholder="URL..." >
+  <input type="submit" value="Add">
 </form> 
+
+<form action="/deleted" method="post">
+  <input type="text" name="bookmark_delete" placeholder="Delete title...">
+  <input type="submit" value="Delete">
+</form>
